@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLoginPanel));
             this.txtTC = new UnderLineTextBox.RGTextBox();
             this.lblTcno = new System.Windows.Forms.Label();
@@ -36,7 +37,9 @@
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.btnEnter = new FontAwesome.Sharp.IconButton();
             this.lblSignUp = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlSignUp = new System.Windows.Forms.Panel();
+            this.btnCancel = new FontAwesome.Sharp.IconButton();
+            this.btnAdd = new FontAwesome.Sharp.IconButton();
             this.lblBakiyeEkle = new System.Windows.Forms.Label();
             this.lblSifreEkle = new System.Windows.Forms.Label();
             this.lblIsimEkle = new System.Windows.Forms.Label();
@@ -45,7 +48,9 @@
             this.txtEkleSifre = new UnderLineTextBox.RGTextBox();
             this.txtEkleIsim = new UnderLineTextBox.RGTextBox();
             this.txtEkleTc = new UnderLineTextBox.RGTextBox();
-            this.panel1.SuspendLayout();
+            this.timerOpen = new System.Windows.Forms.Timer(this.components);
+            this.timerClose = new System.Windows.Forms.Timer(this.components);
+            this.pnlSignUp.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtTC
@@ -170,23 +175,75 @@
             this.lblSignUp.Size = new System.Drawing.Size(102, 32);
             this.lblSignUp.TabIndex = 1;
             this.lblSignUp.Text = "Kayıt Ol";
+            this.lblSignUp.Click += new System.EventHandler(this.lblSignUp_Click);
             this.lblSignUp.MouseLeave += new System.EventHandler(this.lblSignUp_MouseLeave);
             this.lblSignUp.MouseHover += new System.EventHandler(this.lblSignUp_MouseHover);
             // 
-            // panel1
+            // pnlSignUp
             // 
-            this.panel1.Controls.Add(this.lblBakiyeEkle);
-            this.panel1.Controls.Add(this.lblSifreEkle);
-            this.panel1.Controls.Add(this.lblIsimEkle);
-            this.panel1.Controls.Add(this.lblTcEkle);
-            this.panel1.Controls.Add(this.txtEkleBakiye);
-            this.panel1.Controls.Add(this.txtEkleSifre);
-            this.panel1.Controls.Add(this.txtEkleIsim);
-            this.panel1.Controls.Add(this.txtEkleTc);
-            this.panel1.Location = new System.Drawing.Point(68, 21);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(700, 500);
-            this.panel1.TabIndex = 3;
+            this.pnlSignUp.BackColor = System.Drawing.Color.Transparent;
+            this.pnlSignUp.Controls.Add(this.btnCancel);
+            this.pnlSignUp.Controls.Add(this.btnAdd);
+            this.pnlSignUp.Controls.Add(this.lblBakiyeEkle);
+            this.pnlSignUp.Controls.Add(this.lblSifreEkle);
+            this.pnlSignUp.Controls.Add(this.lblIsimEkle);
+            this.pnlSignUp.Controls.Add(this.lblTcEkle);
+            this.pnlSignUp.Controls.Add(this.txtEkleBakiye);
+            this.pnlSignUp.Controls.Add(this.txtEkleSifre);
+            this.pnlSignUp.Controls.Add(this.txtEkleIsim);
+            this.pnlSignUp.Controls.Add(this.txtEkleTc);
+            this.pnlSignUp.Location = new System.Drawing.Point(68, 21);
+            this.pnlSignUp.Name = "pnlSignUp";
+            this.pnlSignUp.Size = new System.Drawing.Size(16, 500);
+            this.pnlSignUp.TabIndex = 3;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.White;
+            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(58)))), ((int)(((byte)(86)))));
+            this.btnCancel.FlatAppearance.BorderSize = 4;
+            this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(58)))), ((int)(((byte)(86)))));
+            this.btnCancel.IconChar = FontAwesome.Sharp.IconChar.Ban;
+            this.btnCancel.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(58)))), ((int)(((byte)(86)))));
+            this.btnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCancel.IconSize = 56;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(400, 354);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(171, 61);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "İPTAL";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(147)))), ((int)(((byte)(124)))));
+            this.btnAdd.FlatAppearance.BorderSize = 4;
+            this.btnAdd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(147)))), ((int)(((byte)(124)))));
+            this.btnAdd.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
+            this.btnAdd.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(147)))), ((int)(((byte)(124)))));
+            this.btnAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAdd.IconSize = 56;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(201, 354);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(171, 61);
+            this.btnAdd.TabIndex = 4;
+            this.btnAdd.Text = "EKLE";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // lblBakiyeEkle
             // 
@@ -206,7 +263,7 @@
             this.lblSifreEkle.BackColor = System.Drawing.Color.Transparent;
             this.lblSifreEkle.Font = new System.Drawing.Font("Segoe UI", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.lblSifreEkle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(133)))), ((int)(((byte)(163)))));
-            this.lblSifreEkle.Location = new System.Drawing.Point(109, 200);
+            this.lblSifreEkle.Location = new System.Drawing.Point(138, 201);
             this.lblSifreEkle.Name = "lblSifreEkle";
             this.lblSifreEkle.Size = new System.Drawing.Size(86, 38);
             this.lblSifreEkle.TabIndex = 1;
@@ -218,7 +275,7 @@
             this.lblIsimEkle.BackColor = System.Drawing.Color.Transparent;
             this.lblIsimEkle.Font = new System.Drawing.Font("Segoe UI", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.lblIsimEkle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(133)))), ((int)(((byte)(163)))));
-            this.lblIsimEkle.Location = new System.Drawing.Point(81, 124);
+            this.lblIsimEkle.Location = new System.Drawing.Point(74, 133);
             this.lblIsimEkle.Name = "lblIsimEkle";
             this.lblIsimEkle.Size = new System.Drawing.Size(150, 38);
             this.lblIsimEkle.TabIndex = 1;
@@ -230,7 +287,7 @@
             this.lblTcEkle.BackColor = System.Drawing.Color.Transparent;
             this.lblTcEkle.Font = new System.Drawing.Font("Segoe UI", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.lblTcEkle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(133)))), ((int)(((byte)(163)))));
-            this.lblTcEkle.Location = new System.Drawing.Point(109, 65);
+            this.lblTcEkle.Location = new System.Drawing.Point(103, 65);
             this.lblTcEkle.Name = "lblTcEkle";
             this.lblTcEkle.Size = new System.Drawing.Size(121, 38);
             this.lblTcEkle.TabIndex = 1;
@@ -251,7 +308,7 @@
             this.txtEkleBakiye.Padding = new System.Windows.Forms.Padding(7);
             this.txtEkleBakiye.passwordChar = false;
             this.txtEkleBakiye.Size = new System.Drawing.Size(312, 46);
-            this.txtEkleBakiye.TabIndex = 0;
+            this.txtEkleBakiye.TabIndex = 3;
             this.txtEkleBakiye.Texts = "";
             this.txtEkleBakiye.UnderLine = false;
             this.txtEkleBakiye.Enter += new System.EventHandler(this.lblEkleBakiye_Enter);
@@ -266,13 +323,13 @@
             this.txtEkleSifre.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.txtEkleSifre.ForeColor = System.Drawing.Color.DimGray;
             this.txtEkleSifre.IsFocused = false;
-            this.txtEkleSifre.Location = new System.Drawing.Point(240, 198);
+            this.txtEkleSifre.Location = new System.Drawing.Point(240, 199);
             this.txtEkleSifre.multiLine = false;
             this.txtEkleSifre.Name = "txtEkleSifre";
             this.txtEkleSifre.Padding = new System.Windows.Forms.Padding(7);
             this.txtEkleSifre.passwordChar = false;
             this.txtEkleSifre.Size = new System.Drawing.Size(312, 46);
-            this.txtEkleSifre.TabIndex = 0;
+            this.txtEkleSifre.TabIndex = 2;
             this.txtEkleSifre.Texts = "";
             this.txtEkleSifre.UnderLine = false;
             this.txtEkleSifre.Enter += new System.EventHandler(this.txtEkleSifre_Enter);
@@ -287,13 +344,13 @@
             this.txtEkleIsim.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.txtEkleIsim.ForeColor = System.Drawing.Color.DimGray;
             this.txtEkleIsim.IsFocused = false;
-            this.txtEkleIsim.Location = new System.Drawing.Point(240, 122);
+            this.txtEkleIsim.Location = new System.Drawing.Point(240, 131);
             this.txtEkleIsim.multiLine = false;
             this.txtEkleIsim.Name = "txtEkleIsim";
             this.txtEkleIsim.Padding = new System.Windows.Forms.Padding(7);
             this.txtEkleIsim.passwordChar = false;
             this.txtEkleIsim.Size = new System.Drawing.Size(312, 46);
-            this.txtEkleIsim.TabIndex = 0;
+            this.txtEkleIsim.TabIndex = 1;
             this.txtEkleIsim.Texts = "";
             this.txtEkleIsim.UnderLine = false;
             this.txtEkleIsim.Enter += new System.EventHandler(this.rgTextBox2_Enter);
@@ -320,6 +377,16 @@
             this.txtEkleTc.Enter += new System.EventHandler(this.txtEkleTc_Enter);
             this.txtEkleTc.Leave += new System.EventHandler(this.txtEkleTc_Leave);
             // 
+            // timerOpen
+            // 
+            this.timerOpen.Interval = 1;
+            this.timerOpen.Tick += new System.EventHandler(this.timerOpen_Tick);
+            // 
+            // timerClose
+            // 
+            this.timerClose.Interval = 1;
+            this.timerClose.Tick += new System.EventHandler(this.timerClose_Tick);
+            // 
             // frmLoginPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -327,7 +394,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(839, 535);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlSignUp);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblSignUp);
@@ -340,8 +407,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmLoginPanel";
             this.Load += new System.EventHandler(this.frmLoginPanel_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlSignUp.ResumeLayout(false);
+            this.pnlSignUp.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,7 +423,7 @@
         private FontAwesome.Sharp.IconButton btnClose;
         private FontAwesome.Sharp.IconButton btnEnter;
         private Label lblSignUp;
-        private Panel panel1;
+        private Panel pnlSignUp;
         private Label lblBakiyeEkle;
         private Label lblSifreEkle;
         private Label lblIsimEkle;
@@ -365,5 +432,9 @@
         private UnderLineTextBox.RGTextBox txtEkleSifre;
         private UnderLineTextBox.RGTextBox txtEkleIsim;
         private UnderLineTextBox.RGTextBox txtEkleTc;
+        private FontAwesome.Sharp.IconButton btnCancel;
+        private FontAwesome.Sharp.IconButton btnAdd;
+        private System.Windows.Forms.Timer timerOpen;
+        private System.Windows.Forms.Timer timerClose;
     }
 }
